@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/bt_left"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="182dp"
+        android:text="left" />
+
+    <Button
+        android:id="@+id/bt_right"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/bt_left"
+        android:text="right" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bt_right"
+        android:layout_alignBottom="@+id/bt_right"
+        android:layout_centerHorizontal="true"
+        android:text="Kartoffelsalat:\n 2 Kartoffeln, 1 Zwiebel,\n2 Eier, 2 EL Mayo, Salz" />
+
+    <Button
+        android:id="@+id/bt_save_to_cookbook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="58dp"
+        android:text="Save" />
+
+</RelativeLayout>

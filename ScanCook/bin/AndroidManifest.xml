@@ -6,12 +6,29 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
-
+	<uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.scancook.eeb.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+         <activity
+            android:name="com.scancook.eeb.ScannedResultActivity"
+            android:label="@string/app_name" >
+         </activity>
+         <activity
+            android:name="com.scancook.eeb.RecipeFoundActivity"
+            android:label="@string/app_name" >
+         </activity>
     </application>
 
 </manifest>
