@@ -40,10 +40,10 @@ private Button mScanButton;
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(),ScannedResultActivity.class);
-				getActivity().startActivity(intent);
-				//(new IntentIntegrator(getActivity())).
-				//initiateScan(IntentIntegrator.PRODUCT_CODE_TYPES);
+				//Intent intent = new Intent(getActivity(),ScannedResultActivity.class);
+				//getActivity().startActivity(intent);
+				(new IntentIntegrator(getActivity())).
+				initiateScan(IntentIntegrator.PRODUCT_CODE_TYPES);
 			}
 		});
 		return rootView;

@@ -52,11 +52,12 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		IntentResult scan = IntentIntegrator.parseActivityResult(requestCode,
 				resultCode, intent);
 		if (scan != null) {
-			String result=convertStreamToString(getInputStreamFromUrl("http://openean.kaufkauf.net/?ean="
-					+ scan.getContents() + "&cmd=query&queryid=300000000"));
-			Log.d("ScannerTag", result);
-			
-			
+			Intent i = new Intent(this, WebViewHelper.class);
+			i.putExtra("URL", "http://openean.kaufkauf.net/?ean="
+					+ scan.getContents() + "&cmd=query&queryid=300000000");
+			startActivity(i);
+			/*text.setText(convertStreamToString(getInputStreamFromUrl("http://openean.kaufkauf.net/?ean="
+					+ scan.getContents() + "&cmd=query&queryid=300000000")));*/
 		}
 	}
 	public static InputStream getInputStreamFromUrl(String url) {
