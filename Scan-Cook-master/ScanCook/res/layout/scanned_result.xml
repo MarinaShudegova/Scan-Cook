@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/bt_scan_more"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="28dp"
+        android:layout_marginLeft="25dp"
+        android:text="Scan more" />
+
+    <Button
+        android:id="@+id/bt_next"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bt_scan_more"
+        android:layout_alignBottom="@+id/bt_scan_more"
+        android:layout_marginLeft="39dp"
+        android:layout_toRightOf="@+id/bt_scan_more"
+        android:text="Next" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/iv_thumbs3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignRight="@+id/bt_next"
+        android:layout_alignTop="@+id/textView1"
+        android:src="@drawable/im_thumbs_up_grey" />
+
+    <TextView
+        android:id="@+id/tv_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_thumbs3"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/bt_scan_more"
+        android:text="200g" />
+
+    <Button
+        android:id="@+id/bt_plus"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_weight"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/tv_weight"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/bt_minus"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/bt_scan_more"
+        android:layout_alignTop="@+id/tv_weight"
+        android:text="-" />
+
+    <ImageView
+        android:id="@+id/iv_thumbs2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/iv_thumbs3"
+        android:layout_toLeftOf="@+id/iv_thumbs3"
+        android:src="@drawable/im_thumbs_up_grey" />
+
+    <ImageView
+        android:id="@+id/iv_thumbs1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/tv_weight"
+        android:layout_toLeftOf="@+id/iv_thumbs2"
+        android:src="@drawable/im_thumbs_up_grey" />
+
+</RelativeLayout>
