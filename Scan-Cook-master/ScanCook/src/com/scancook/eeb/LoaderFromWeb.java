@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 
 class RecieverScannedInfo extends AsyncTask<String, Void, String> {
 	Context mContext;
+	 int counter = -1;
 	public RecieverScannedInfo(Context context) {
 		mContext = context;
 	}
@@ -26,6 +27,7 @@ class RecieverScannedInfo extends AsyncTask<String, Void, String> {
     	DefaultHttpClient http = new DefaultHttpClient();
         HttpGet httpMethod = new HttpGet();
         String responseBody ="";
+        
         try {
             httpMethod.setURI(new URI("http://openean.kaufkauf.net/?ean="+ urls[0] + "&cmd=query&queryid=300000000"));
         } 
@@ -33,6 +35,7 @@ class RecieverScannedInfo extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
         HttpResponse response = null;
+        
         try {
             response = http.execute(httpMethod);
         } 
@@ -42,14 +45,20 @@ class RecieverScannedInfo extends AsyncTask<String, Void, String> {
         catch (IOException e) {
             e.printStackTrace();
         }
+        if (response == null) {
+        	return "";
+        
+        }
         int responseCode = response.getStatusLine().getStatusCode();
+       
         switch(responseCode){
             case 200:
                 HttpEntity entity = response.getEntity();
+                
                 if(entity != null){
 			        try {
 			            responseBody = EntityUtils.toString(entity);
-            
+			            counter = counter + 1;
 			            //Intent scannedResultIntent = new Intent(this, ScannedResultActivity.class);
 			            //this.startActivity(scannedResultIntent);
                     } 
@@ -62,20 +71,26 @@ class RecieverScannedInfo extends AsyncTask<String, Void, String> {
                 }
             break;
         }
-        return stringParse (responseBody);
+        return stringParse (responseBody,counter);
+        //return responseBody;
     }
-   @Override
+   private void If(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+@Override
     protected void onPostExecute(String result) {
 	   Intent intent = new Intent(mContext, ScannedResultActivity.class);
 	   intent.putExtra("RESULT", result);
 	   mContext.startActivity(intent);
 	   super.onPostExecute(result);
     }
-   private String stringParse (String source) {
-	   //String result = "";
-	   String result = "error=0 --- asin= name=Cola detailname=Coca-Cola Cherry vendor=Coca-Cola Deutschland Verkauf maincat=Getränke, Alkohol subcat=Limonaden maincatnum=11 subcatnum=7 contents=0 origin=Belgien descr=PET-Flasche 1L name_en= detailname_en= descr_en= validated=100 %";
-
-	   int v_positionName = source.indexOf("name=");
+   private String stringParse (String source, int counter) {
+	   String result = "";
+	   String produkte[] = null;
+	   //String result = "error=0 --- asin= name=Cola detailname=Coca-Cola Cherry vendor=Coca-Cola Deutschland Verkauf maincat=Getränke, Alkohol subcat=Limonaden maincatnum=11 subcatnum=7 contents=0 origin=Belgien descr=PET-Flasche 1L name_en= detailname_en= descr_en= validated=100 %";
+	  // System.out.println(source);
+	   	  int v_positionName = source.indexOf("name=");
 	      int v_positionDetailname = source.indexOf("detailname=");
 	      int v_positionVendor = source.indexOf("vendor=");
 	      int v_positionDescr = source.indexOf("descr=");
@@ -83,7 +98,8 @@ class RecieverScannedInfo extends AsyncTask<String, Void, String> {
 	      String v_name = source.substring(v_positionName+5, v_positionDetailname);
 	      String v_detailname = source.substring(v_positionDetailname+12, v_positionVendor);
 	      String v_descr = source.substring(v_positionDescr+6, v_positionLand);
-	      result = v_name + " " + v_detailname;
+	      result = v_name;
+	      produkte[counter] = result;
 	   return result;
 	   }
     
