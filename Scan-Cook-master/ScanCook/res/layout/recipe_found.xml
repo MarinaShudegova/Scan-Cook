@@ -23,12 +23,14 @@
         android:text="right" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_found_recipe"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/bt_right"
         android:layout_alignBottom="@+id/bt_right"
         android:layout_centerHorizontal="true"
+        android:maxLines = "15"
+		android:scrollbars = "vertical"
         android:text="Kartoffelsalat:\n 2 Kartoffeln, 1 Zwiebel,\n2 Eier, 2 EL Mayo, Salz" />
 
     <Button

@@ -43,9 +43,7 @@ public class ProductsOverview extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(),RecipeFoundActivity.class);
-				getActivity().startActivity(intent);
-				
+				new FindRecipeHelper(getActivity()).execute("");
 			}
 		});
 		
