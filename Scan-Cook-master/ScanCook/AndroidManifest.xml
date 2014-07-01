@@ -33,6 +33,10 @@
             android:name="com.scancook.eeb.WebViewHelper"
             android:label="@string/app_name" >
          </activity>
+         <activity
+            android:name="com.scancook.eeb.ProductsOverview"
+            android:label="@string/app_name" >
+         </activity>
     </application>
 
 </manifest>

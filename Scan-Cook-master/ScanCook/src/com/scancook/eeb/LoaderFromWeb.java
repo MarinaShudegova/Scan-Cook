@@ -18,7 +18,7 @@ import android.os.AsyncTask;
 
 class RecieverScannedInfo extends AsyncTask<String, Void, String> {
 	Context mContext;
-	 int counter = -1;
+	// int counter = -1;
 	public RecieverScannedInfo(Context context) {
 		mContext = context;
 	}
@@ -58,10 +58,7 @@ class RecieverScannedInfo extends AsyncTask<String, Void, String> {
                 if(entity != null){
 			        try {
 			            responseBody = EntityUtils.toString(entity);
-			            counter = counter + 1;
-			            //Intent scannedResultIntent = new Intent(this, ScannedResultActivity.class);
-			            //this.startActivity(scannedResultIntent);
-                    } 
+			        } 
 			        catch (ParseException e) {
 			            e.printStackTrace();
 			        } 
@@ -71,8 +68,9 @@ class RecieverScannedInfo extends AsyncTask<String, Void, String> {
                 }
             break;
         }
-        return stringParse (responseBody,counter);
-        //return responseBody;
+        String ScannedProduct = stringParse (responseBody); 
+        MainActivity.ProductList.add(ScannedProduct);
+        return ScannedProduct;
     }
    private void If(boolean b) {
 		// TODO Auto-generated method stub
@@ -85,12 +83,9 @@ class RecieverScannedInfo extends AsyncTask<String, Void, String> {
 	   mContext.startActivity(intent);
 	   super.onPostExecute(result);
     }
-   private String stringParse (String source, int counter) {
+   private String stringParse (String source) {
 	   String result = "";
-	   String produkte[] = null;
-	   //String result = "error=0 --- asin= name=Cola detailname=Coca-Cola Cherry vendor=Coca-Cola Deutschland Verkauf maincat=Getränke, Alkohol subcat=Limonaden maincatnum=11 subcatnum=7 contents=0 origin=Belgien descr=PET-Flasche 1L name_en= detailname_en= descr_en= validated=100 %";
-	  // System.out.println(source);
-	   	  int v_positionName = source.indexOf("name=");
+	     int v_positionName = source.indexOf("name=");
 	      int v_positionDetailname = source.indexOf("detailname=");
 	      int v_positionVendor = source.indexOf("vendor=");
 	      int v_positionDescr = source.indexOf("descr=");
@@ -99,8 +94,7 @@ class RecieverScannedInfo extends AsyncTask<String, Void, String> {
 	      String v_detailname = source.substring(v_positionDetailname+12, v_positionVendor);
 	      String v_descr = source.substring(v_positionDescr+6, v_positionLand);
 	      result = v_name;
-	      produkte[counter] = result;
-	   return result;
+	      return result;
 	   }
     
 }

@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -39,6 +40,7 @@ import android.widget.TextView;
 
 @SuppressLint("NewApi")
 public class MainActivity extends FragmentActivity implements TabListener {
+	public static ArrayList<String> ProductList =  new ArrayList<String>();
 	private String[] mTabs = {"Scan", "Products","Cookbook"};
 	private ActionBar mActionBar;
 	private ScanbookPageAdapter mPageadapter;

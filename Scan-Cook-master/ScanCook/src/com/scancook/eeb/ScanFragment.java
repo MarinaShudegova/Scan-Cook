@@ -33,7 +33,6 @@ private Button mScanButton;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
 		View rootView = inflater.inflate(R.layout.scanner_view, container, false);
 	    mScanButton = (Button) rootView.findViewById(R.id.bt_scan); 
 		mScanButton.setOnClickListener(new OnClickListener() {

@@ -1,6 +1,8 @@
 package com.scancook.eeb;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,10 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ScannedResultActivity extends Activity {
+	Context mContext;
 	private TextView mWeightAdjustment;
 	private TextView mRecipeDisplay;
 	private Button mPlusButton;
 	private Button mMinusButton;
+	private Button mNextButton;
 	private int mCurrentWeight=100;
 	private int mStep=10;
 	private ImageView mThumbs1;
@@ -29,7 +33,7 @@ public class ScannedResultActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.scanned_result);
-		
+		mContext=this;
 		String scannedProduct = getIntent().getStringExtra("RESULT");
 		mRecipeDisplay = (TextView) findViewById(R.id.textView1);
 		mRecipeDisplay.setText(scannedProduct);
@@ -44,6 +48,7 @@ public class ScannedResultActivity extends Activity {
 		mThumbs2 = (ImageView) findViewById(R.id.iv_thumbs2);
 		mThumbs3 = (ImageView) findViewById(R.id.iv_thumbs3);
 		
+		mNextButton = (Button) findViewById(R.id.bt_next);
 		
 		mPlusButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -106,6 +111,15 @@ public class ScannedResultActivity extends Activity {
 				
 				
 			
+		});
+		mNextButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(mContext, ProductsOverview.class);
+                startActivity(intent); 
+				
+			}
 		});
 		
 	}
