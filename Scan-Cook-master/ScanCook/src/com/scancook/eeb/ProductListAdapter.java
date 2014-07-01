@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 public class ProductListAdapter extends BaseAdapter {
 	private Context mContext;
-	//fake array
-	private String [] FakeString = {"item1","item2","item3"};
 	
 	
 	public ProductListAdapter(Context context) {
@@ -19,21 +17,18 @@ public class ProductListAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// FAKE
-		return FakeString.length;
+		return ProductsOverview.ProductList.size();
 	
 	}
 
 	@Override
 	public Object getItem(int position) {
-		//Fake
-		return FakeString[position];
+		return ProductsOverview.ProductList.get(position);
 		
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

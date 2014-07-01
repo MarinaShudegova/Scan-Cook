@@ -4,40 +4,40 @@
     android:layout_height="match_parent" >
 
     <Button
-        android:id="@+id/bt_scan_more"
+        android:id="@+id/bt_scan"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="28dp"
         android:layout_marginLeft="25dp"
-        android:text="Scan more" />
+        android:text="Scan" />
 
     <Button
         android:id="@+id/bt_next"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/bt_scan_more"
-        android:layout_alignBottom="@+id/bt_scan_more"
+        android:layout_alignBaseline="@+id/bt_scan"
+        android:layout_alignBottom="@+id/bt_scan"
         android:layout_marginLeft="39dp"
-        android:layout_toRightOf="@+id/bt_scan_more"
-        android:text="Next" />
+        android:layout_toRightOf="@+id/bt_scan"
+        android:text="Overview" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/tv_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="200dp"
-        android:text="TextView" />
+        android:text="Your product!" />
 
     <ImageView
         android:id="@+id/iv_thumbs3"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignRight="@+id/bt_next"
-        android:layout_alignTop="@+id/textView1"
+        android:layout_alignTop="@+id/tv_product"
         android:src="@drawable/im_thumbs_up_grey" />
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_thumbs3"
         android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/bt_scan_more"
+        android:layout_toRightOf="@+id/bt_scan"
         android:text="200g" />
 
     <Button
@@ -64,7 +64,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/bt_scan_more"
+        android:layout_alignRight="@+id/bt_scan"
         android:layout_alignTop="@+id/tv_weight"
         android:text="-" />
 

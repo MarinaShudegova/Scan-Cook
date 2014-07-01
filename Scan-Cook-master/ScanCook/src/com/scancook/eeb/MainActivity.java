@@ -1,26 +1,11 @@
 package com.scancook.eeb;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -29,22 +14,24 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
-import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.widget.TextView;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 @SuppressLint("NewApi")
 public class MainActivity extends FragmentActivity implements TabListener {
-	public static ArrayList<String> ProductList =  new ArrayList<String>();
+	
 	private String[] mTabs = {"Scan", "Products","Cookbook"};
 	private ActionBar mActionBar;
 	private ScanbookPageAdapter mPageadapter;
 	private ViewPager mViewPager;
+	private ProductsOverviewReciver mReciver;
 	
 	
 	/**Helena's code:
@@ -82,6 +69,27 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		}
 		mPageadapter = new ScanbookPageAdapter(getSupportFragmentManager());
 		mViewPager.setAdapter(mPageadapter);
+		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int position) {
+				getActionBar().setSelectedNavigationItem(position);
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+
+			}
+		});
+		mReciver = new ProductsOverviewReciver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("GoToOverview");
+		registerReceiver(mReciver, filter);
 	}
 	
 	@Override
@@ -90,36 +98,6 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		String scannedCode = scan.getContents();
 		new RecieverScannedInfo(this).execute(scannedCode);
 	}
-		/**test scaNNER OUTPUT: 
-		 * String link = "http://openean.kaufkauf.net/?ean="+ scan.getContents() + "&cmd=query&queryid=300000000";
-		         URL url = null;
-				try {
-					url = new URL(link);
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		        URLConnection conn = null;
-		        BufferedReader reader = null;
-				try {
-					conn = url.openConnection();
-				    conn.setDoOutput(true);
-				    reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-					for (String s; (s=reader.readLine()) != null;)
-					System.out.println(s);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} **/
-	
-		/** von Huachong: 
-		 	if (scan != null) {
-			Intent i = new Intent(this, WebViewHelper.class);
-			i.putExtra("URL", "http://openean.kaufkauf.net/?ean="
-					+ scan.getContents() + "&cmd=query&queryid=300000000");
-			startActivity(i);**/
-			/*text.setText(convertStreamToString(getInputStreamFromUrl("http://openean.kaufkauf.net/?ean="
-					+ scan.getContents() + "&cmd=query&queryid=300000000")));*/
 		
 	public static InputStream getInputStreamFromUrl(String url) {
 		InputStream content = null;
@@ -142,9 +120,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		mViewPager.setCurrentItem(tab.getPosition());
-		
-		
+		mViewPager.setCurrentItem(tab.getPosition());	
 	}
 
 
@@ -159,6 +135,15 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private class ProductsOverviewReciver extends BroadcastReceiver {
+		@Override
+	    public void onReceive(Context context, Intent intent) {
+		   if (intent.getAction().equals("RecieverScannedInfo.DATA")) {
+			   mViewPager.setCurrentItem(1);//TODO:
+		   }
+	    }
 	}
 
 }
