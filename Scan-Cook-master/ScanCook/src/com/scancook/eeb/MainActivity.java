@@ -140,7 +140,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	private class ProductsOverviewReciver extends BroadcastReceiver {
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-		   if (intent.getAction().equals("RecieverScannedInfo.DATA")) {
+		   if (intent.getAction().equals("GoToOverview")) {
 			   mViewPager.setCurrentItem(1);//TODO:
 		   }
 	    }
