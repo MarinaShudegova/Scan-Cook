@@ -75,6 +75,7 @@ public class RecipeFoundActivity extends Activity {
 	
 	@Override
 	protected void onResume() {
+		super.onResume();
 		changeRecipe(mRecipeCounter);
 	}
 	

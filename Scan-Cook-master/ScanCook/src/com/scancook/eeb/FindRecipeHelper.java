@@ -54,10 +54,10 @@ class FindRecipeHelper extends AsyncTask<String, Void, String> {
         //
         //If you want to use fake - comment in loop below and comment out above
         for (int i = 0; i < ProductsOverview.ProductList.size(); i++) {
-        	String param = M_PRODUCT_NAME+(i+2)+"='"+ProductsOverview.ProductList.get(i)+"'&";
+        	String param = M_PRODUCT_NAME+(i+2)+"='"+ProductsOverview.ProductList.get(i).trim()+"'&";
         	phpRequest = phpRequest + param;
         }
-        //
+        
         phpRequest=phpRequest.substring(0, phpRequest.length()-1);
         try {
             httpMethod.setURI(new URI(phpRequest));
@@ -105,12 +105,12 @@ class FindRecipeHelper extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-		Intent intent = new Intent(mContext,RecipeFoundActivity.class);
-		intent.putExtra("RESULT", result);
-		mContext.startActivity(intent);
     	if (dialog.isShowing()) {
             dialog.dismiss();
         }
+    	Intent intent = new Intent(mContext,RecipeFoundActivity.class);
+		intent.putExtra("RESULT", result);
+		mContext.startActivity(intent);
     }
     
 	private String stringParse(String source) {
