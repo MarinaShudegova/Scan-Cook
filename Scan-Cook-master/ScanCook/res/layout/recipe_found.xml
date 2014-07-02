@@ -42,4 +42,13 @@
         android:layout_marginBottom="58dp"
         android:text="Save" />
 
+    <TextView
+        android:id="@+id/tv_recipe_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bt_right"
+        android:layout_centerHorizontal="true"
+        android:text="Your recipe"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 </RelativeLayout>
